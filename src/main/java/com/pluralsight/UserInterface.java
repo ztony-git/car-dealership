@@ -180,12 +180,25 @@ public class UserInterface {
     }
 
     private void displayVehicles(List<Vehicle> vehicles) {
-        System.out.printf("%-25s | %-10s | %-10s | %-10s | %-4s | %-6s%n", "Make & Model", "Price", "Color", "Mileage", "Year", "Vin");
+        System.out.printf("%-25s | %-10s | %-10s | %-10s | %-10s | %-4s | %-6s%n",
+                "Make & Model",
+                "Price",
+                "Type",
+                "Color",
+                "Mileage",
+                "Year",
+                "Vin");
         seperator();
 
         for (Vehicle vehicle : vehicles) {
-            System.out.printf("%-25s | %-10.2f | %-10s | %-10d | %-4d | %-6d%n", (vehicle.getMake() + " " + vehicle.getModel()),
-                    vehicle.getPrice(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getYear(), vehicle.getVin());
+            System.out.printf("%-25s | %-10.2f | %-10s | %-10s | %-10d | %-4d | %-6d%n",
+                    (vehicle.getMake() + " " + vehicle.getModel()),
+                    vehicle.getPrice(),
+                    vehicle.getVehicleType(),
+                    vehicle.getColor(),
+                    vehicle.getOdometer(),
+                    vehicle.getYear(),
+                    vehicle.getVin());
         }
     }
 
