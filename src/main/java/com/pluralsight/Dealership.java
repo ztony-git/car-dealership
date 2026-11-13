@@ -17,27 +17,27 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByPrice(double min, double max) {
-        return new ArrayList<>();
+        return null;
     }
 
     public List<Vehicle> getVehiclesByMakeModel(String make, String model) {
-        return new ArrayList<>();
+        return null;
     }
 
     public List<Vehicle> getVehiclesByYear(double min, double max) {
-        return new ArrayList<>();
+        return null;
     }
 
     public List<Vehicle> getVehiclesByColor(String color) {
-        return new ArrayList<>();
+        return null;
     }
 
     public List<Vehicle> getVehiclesByMileage(double min, double max) {
-        return new ArrayList<>();
+        return null;
     }
 
     public List<Vehicle> getVehiclesByType(String vehicleType) {
-        return new ArrayList<>();
+        return null;
     }
 
     public List<Vehicle> getAllVehicles(double min, double max) {
