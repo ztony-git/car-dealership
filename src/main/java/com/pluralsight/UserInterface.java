@@ -1,11 +1,8 @@
 package com.pluralsight;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class UserInterface {
     private Dealership dealership;
@@ -24,22 +21,21 @@ public class UserInterface {
             input = scanner.nextLine();
 
             switch (input) {
-                case "1" -> { processGetByPriceRequest(scanner); }
-                case "2" -> { processGetByMakeModelRequest(scanner); }
-                case "3" -> { processGetByYearRequest(scanner); }
-                case "4" -> { processGetByColorRequest(scanner); }
-                case "5" -> { processGetByMileageRequest(scanner); }
-                case "6" -> { processGetByVehicleTypeRequest(scanner); }
-                case "7" -> { processGetAllVehiclesRequest(); }
-                case "8" -> { processAddVehicleRequest(); }
-                case "9" -> { processRemoveVehicleRequest(); }
+                case "1" -> processGetByPriceRequest(scanner);
+                case "2" -> processGetByMakeModelRequest(scanner);
+                case "3" -> processGetByYearRequest(scanner);
+                case "4" -> processGetByColorRequest(scanner);
+                case "5" -> processGetByMileageRequest(scanner);
+                case "6" -> processGetByVehicleTypeRequest(scanner);
+                case "7" -> processGetAllVehiclesRequest();
+                case "8" -> processAddVehicleRequest(scanner);
+                case "9" -> processRemoveVehicleRequest();
                 case "99" -> { return; }
-                default -> {
-                    System.out.println("Invalid input");
-                }
+                default -> System.out.println("Invalid input");
+
             }
         }
-    };
+    }
 
     public void processGetByPriceRequest(Scanner scanner) {
         seperator();
@@ -157,7 +153,72 @@ public class UserInterface {
         displayVehicles(dealership.getAllVehicles());
     }
 
-    public void processAddVehicleRequest() {}
+    public void processAddVehicleRequest(Scanner scanner) {
+        // vin|year|make|model|type|color|odometer|price
+        String input;
+
+        int vin = -1;
+        while (vin == -1) {
+            System.out.print("Vin: ");
+            input = scanner.nextLine().trim();
+            try {
+                vin = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input: " + e.getMessage());
+            }
+        }
+
+        int year = -1;
+        while (year == -1) {
+            System.out.print("Year: ");
+            input = scanner.nextLine().trim();
+            try {
+                year = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input: " + e.getMessage());
+            }
+        }
+
+        System.out.print("Make: ");
+        String make = scanner.nextLine();
+
+        System.out.print("Model: ");
+        String model = scanner.nextLine();
+
+        System.out.print("Type: ");
+        String type = scanner.nextLine();
+
+        System.out.print("Color: ");
+        String color = scanner.nextLine();
+
+        int mileage = -1;
+        while (mileage == -1) {
+            System.out.print("Mileage: ");
+            input = scanner.nextLine().trim();
+            try {
+                mileage = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input: " + e.getMessage());
+            }
+        }
+
+        BigDecimal price = null;
+        while (price == null) {
+            System.out.print("Price: $");
+            input = scanner.nextLine().trim();
+            try {
+                price = new BigDecimal(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input: " + e.getMessage());
+            }
+        }
+
+        Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, mileage, price);
+        dealership.addVehicle(vehicle);
+
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        dealershipFileManager.saveDealership(dealership);
+    }
 
     public void processRemoveVehicleRequest() {}
 

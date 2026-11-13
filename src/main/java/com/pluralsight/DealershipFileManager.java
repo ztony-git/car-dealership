@@ -1,7 +1,9 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.math.BigDecimal;
 
 public class DealershipFileManager {
@@ -43,5 +45,18 @@ public class DealershipFileManager {
         }
     }
 
-    public void saveDealership(Dealership dealership) {}
+    public void saveDealership(Dealership dealership) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(FILE));
+            bw.write(dealership.toCSV() + "\n");
+
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                bw.write(vehicle.toCSV() + "\n");
+            }
+
+            bw.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

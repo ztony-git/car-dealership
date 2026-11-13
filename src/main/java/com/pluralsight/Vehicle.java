@@ -86,4 +86,15 @@ public class Vehicle {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public String toCSV() {
+        return vin +
+                "|" + year +
+                "|" + make +
+                "|" + model +
+                "|" + vehicleType +
+                "|" + color +
+                "|" + odometer +
+                "|" + price;
+    }
 }

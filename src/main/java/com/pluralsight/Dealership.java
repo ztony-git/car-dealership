@@ -116,6 +116,10 @@ public class Dealership {
         return returnVehicles;
     }
 
+    public String toCSV() {
+        return name + "|" + address + "|" + phone;
+    }
+
     public List<Vehicle> getAllVehicles() {
         return inventory;
     }
