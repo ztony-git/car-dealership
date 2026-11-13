@@ -29,7 +29,7 @@ public class UserInterface {
                 case "6" -> processGetByVehicleTypeRequest(scanner);
                 case "7" -> processGetAllVehiclesRequest();
                 case "8" -> processAddVehicleRequest(scanner);
-                case "9" -> processRemoveVehicleRequest();
+                case "9" -> processRemoveVehicleRequest(scanner);
                 case "99" -> { return; }
                 default -> System.out.println("Invalid input");
 
@@ -220,7 +220,32 @@ public class UserInterface {
         dealershipFileManager.saveDealership(dealership);
     }
 
-    public void processRemoveVehicleRequest() {}
+    public void processRemoveVehicleRequest(Scanner scanner) {
+        String input;
+
+        int vin = -1;
+        while (vin == -1) {
+            System.out.print("Vin: ");
+            input = scanner.nextLine().trim();
+            try {
+                vin = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input: " + e.getMessage());
+            }
+        }
+
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if (vehicle.getVin() == vin) {
+                System.out.println("REMOVING: ");
+                displayVehicle(vehicle);
+                dealership.removeVehicle(vehicle);
+                break; // assuming vins are unique
+            }
+        }
+
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        dealershipFileManager.saveDealership(dealership);
+    }
 
     /***************************************
     * HELPER
@@ -252,15 +277,19 @@ public class UserInterface {
         seperator();
 
         for (Vehicle vehicle : vehicles) {
-            System.out.printf("%-25s | %-10.2f | %-10s | %-10s | %-10d | %-4d | %-6d%n",
-                    (vehicle.getMake() + " " + vehicle.getModel()),
-                    vehicle.getPrice(),
-                    vehicle.getVehicleType(),
-                    vehicle.getColor(),
-                    vehicle.getOdometer(),
-                    vehicle.getYear(),
-                    vehicle.getVin());
+            displayVehicle(vehicle);
         }
+    }
+
+    private void displayVehicle(Vehicle vehicle) {
+        System.out.printf("%-25s | %-10.2f | %-10s | %-10s | %-10d | %-4d | %-6d%n",
+                (vehicle.getMake() + " " + vehicle.getModel()),
+                vehicle.getPrice(),
+                vehicle.getVehicleType(),
+                vehicle.getColor(),
+                vehicle.getOdometer(),
+                vehicle.getYear(),
+                vehicle.getVin());
     }
 
     private void seperator() {

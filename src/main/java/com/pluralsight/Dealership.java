@@ -128,5 +128,7 @@ public class Dealership {
         inventory.add(vehicle);
     }
 
-    public void removeVehicle(Vehicle vehicle) {}
+    public void removeVehicle(Vehicle vehicle) {
+        inventory.remove(vehicle);
+    }
 }
