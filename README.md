@@ -1,4 +1,4 @@
-# Project Title
+# Car Dealership
 
 <!-- HOW TO USE THIS TEMPLATE
      Save it as README.md at the root of your project, next to pom.xml. Replace every comment like this one
@@ -11,16 +11,9 @@
 
 ## Description of the Project
 
+A command line menu that lets users filter, search, add, and remove vehicles from a specified dealership. Users can find vehicles from a price range, make/model, year range, etc. Administrators can add and remove vehicles from their dealership.
 <!-- Three to five sentences. What the application does, who uses it, what problem it solves.
      Write it for someone who has never seen the workbook: a recruiter, a classmate, you in six months. -->
-
-## Class Diagram
-
-<!-- OPTIONAL. Only when the project asks for one (Capstone 2 onward). Export the diagram as a PNG into the
-     images folder and keep the line below. If your project has no class diagram, delete this whole section,
-     heading included. -->
-
-![Class Diagram](images/class-diagram.png)
 
 ## Features
 
@@ -31,9 +24,9 @@
      - Shows every product in the store
      - Searches products by name (bonus) -->
 
--
--
--
+- Shows every vehicle in the dealership under a search filter.
+- Updates `inventory.csv` file based on vehicles being added/removed.
+- Loosely coupled classes where each class serves one purpose.
 
 ## User Stories
 
@@ -41,8 +34,8 @@
      As a [type of user], I want [some goal] so that [some reason].
      Same text as the cards on your GitHub project board. -->
 
-- As a ..., I want ..., so that ...
-- As a ..., I want ..., so that ...
+- As a User, I want to filter my vehicle search, so that I can find the most ideal vehicle quickly.
+- As a Dealership Worker, I want to be able to add/remove vehicles, so that customers are up to date on what vehicles our dealership provides.
 
 ## Setup
 
@@ -56,8 +49,8 @@
 1. Clone this repository, or download it as a zip and unzip it.
 2. In IntelliJ: File > Open, pick the project folder (the one that holds `pom.xml`), press Open.
 3. Wait for IntelliJ to finish indexing (progress bar at the bottom).
-4. Open `src/main/java/com/pluralsight/YourMainClassName.java`. <!-- replace YourMainClassName with the class that has main -->
-5. Right-click inside the file and choose Run 'YourMainClassName.main()'.
+4. Open `src/main/java/com/pluralsight/Program.java`. <!-- replace YourMainClassName with the class that has main -->
+5. Right-click inside the file and choose Run 'Program.main()'.
 
 ### Data and configuration
 
@@ -68,7 +61,7 @@
      - `inventory.csv` sits at the project root, next to `pom.xml`. The program reads it at start.
      - `logs.txt` is created by the program at the project root on the first run. -->
 
--
+- `inventory.csv` sits at the project root, next to `pom.xml`. The program reads it at start.
 
 ## Technologies Used
 
@@ -102,15 +95,25 @@
      demo day and what you talk about in an interview. -->
 
 ```java
-
+BigDecimal price = null;
+while (price == null) {
+    System.out.print("Price: $");
+    input = scanner.nextLine().trim();
+    try {
+        price = new BigDecimal(input);
+    } catch (NumberFormatException e) {
+        System.out.println("Invalid Input: " + e.getMessage());
+    }
+}
 ```
+An easy, simple way to validate user input that is used throughout the program. It's readable, easily editable, and small.
 
 ## Future Work
 
 <!-- What you would add or fix next, one bullet each. Unfinished bonuses belong here. -->
 
--
--
+- In depth search filter
+- GUI rather than CLI. Ability to show images in the GUI
 
 ## Resources
 
@@ -123,10 +126,10 @@
 
 <!-- Your name and, if you like, your GitHub profile link. For a team workshop, one line per person with what each one built. -->
 
-- **Your Name**
+- **Tony Zhang**
 
 ## Thanks
 
 <!-- Optional. The people who helped: the instructor, a classmate who debugged with you, a mentor. -->
 
-- Thank you to ... for ...
+- Thank you to Raymond for his guidance.
