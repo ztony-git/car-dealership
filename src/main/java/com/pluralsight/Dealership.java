@@ -46,7 +46,7 @@ public class Dealership {
 
         for (Vehicle vehicle : inventory) {
             BigDecimal price = vehicle.getPrice();
-            if (price.compareTo(min) > 0 && price.compareTo(max) < 0) {
+            if (price.compareTo(min) >= 0 && price.compareTo(max) <= 0) {
                 returnVehicles.add(vehicle);
             }
         }
@@ -71,7 +71,7 @@ public class Dealership {
 
         for (Vehicle vehicle : inventory) {
             int year = vehicle.getYear();
-            if (year > min && year < max) {
+            if (year >= min && year <= max) {
                 returnVehicles.add(vehicle);
             }
         }
@@ -96,7 +96,7 @@ public class Dealership {
 
         for (Vehicle vehicle : inventory) {
             int mileage = vehicle.getOdometer();
-            if (mileage > min && mileage < max) {
+            if (mileage >= min && mileage <= max) {
                 returnVehicles.add(vehicle);
             }
         }
