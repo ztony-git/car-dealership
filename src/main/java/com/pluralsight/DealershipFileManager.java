@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public class DealershipFileManager {
     private static final String FILE = "inventory.csv";
 
-    private Dealership getDealership() {
+    public Dealership getDealership() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(FILE));
 
@@ -43,5 +43,5 @@ public class DealershipFileManager {
         }
     }
 
-    private void saveDealership(Dealership dealership) {}
+    public void saveDealership(Dealership dealership) {}
 }
