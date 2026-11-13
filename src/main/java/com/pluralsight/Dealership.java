@@ -83,7 +83,7 @@ public class Dealership {
         List<Vehicle> returnVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getColor().equals(color)) {
+            if (vehicle.getColor().equalsIgnoreCase(color)) {
                 returnVehicles.add(vehicle);
             }
         }
@@ -108,7 +108,7 @@ public class Dealership {
         List<Vehicle> returnVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getVehicleType().equals(vehicleType)) {
+            if (vehicle.getVehicleType().equalsIgnoreCase(vehicleType)) {
                 returnVehicles.add(vehicle);
             }
         }
