@@ -64,7 +64,7 @@ public class Dealership {
         return null;
     }
 
-    public List<Vehicle> getAllVehicles(double min, double max) {
+    public List<Vehicle> getAllVehicles() {
         return inventory;
     }
 
